@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
-}
+  reactStrictMode: true,
+  pageExtensions: ["tsx", "api.ts", "api.tsx", ".tsx"],
 
-module.exports = nextConfig
+  basePath: "/hotel",
+  reactStrictMode: false,
+
+  compiler: {
+    styledComponents: true,
+  },
+};
+
+module.exports = nextConfig;
