@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Cliente from "./pages/modules/visualiza/cliente/page";
+import Produto from "./pages/modules/visualiza/produto/page";
 import { Quarto } from "./pages/modules/visualiza/quarto/page";
 
 export default function Home() {
@@ -8,7 +9,7 @@ export default function Home() {
   let renderTab: any = {
     clientes: <Cliente />,
     quartos: <Quarto />,
-    produtos: <div>Produtos</div>,
+    produtos: <Produto />,
     relatorios: <div>Relatorios</div>,
     rendimentos: <div>Rendimentos</div>,
   };
