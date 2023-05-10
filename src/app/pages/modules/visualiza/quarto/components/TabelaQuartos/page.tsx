@@ -1,35 +1,46 @@
-import Editar from "@/app/shared/botoes/botaoEditar/Editar";
 import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
-import { Button, Popconfirm } from "antd";
-import Table, { ColumnsType } from "antd/es/table";
-import { useEffect, useState } from "react";
-import { ICliente } from "../../@types/ICliente";
-import EditarCliente from "../ModalEditar/page";
+import { Button, Popconfirm, Table } from "antd";
+import { ColumnsType } from "antd/es/table";
+import React, { useEffect, useState } from "react";
+import EditarCliente from "../../../cliente/components/ModalEditarCliente/page";
+import { IQuarto } from "../../@types/IQuarto";
+import EditarQuarto from "../ModalEditarQuarto/page";
 
 interface TableProps {
-  dados: ICliente[];
+  dados: IQuarto[];
 }
 
-export default function TabelaCliente({ dados }: TableProps) {
+export function TabelaQuartos({ dados }: TableProps) {
   const [loading, setLoading] = useState<boolean>(false);
-  const [editarCliente, setEditarCliente] = useState<ICliente>();
-  const [dataSource, setDataSource] = useState<ICliente[]>(dados);
+  const [editarQuarto, setEditarQuarto] = useState<IQuarto>();
+  const [dataSource, setDataSource] = useState<IQuarto[]>(dados);
   const [modalEditar, setModalEditar] = useState<boolean>(false);
-  const columnsRegistro: ColumnsType<ICliente> = [
+
+  const columnsRegistro: ColumnsType<IQuarto> = [
     {
       key: "1",
       title: "Nome",
-      render: (record: ICliente) => <> {record.nome} </>,
+      render: (record: IQuarto) => <> {record.descricao} </>,
     },
     {
       key: "2",
-      title: "Cpf",
-      render: (record: ICliente) => <>{record.cpf}</>,
+      title: "vagas",
+      render: (record: IQuarto) => <>{record.vagas}</>,
     },
     {
       key: "3",
+      title: "disponivel",
+      render: (record: IQuarto) => <>{record.disponivel === true ? "Sim" : "Não"}</>,
+    },
+    {
+      key: "4",
+      title: "valor",
+      render: (record: IQuarto) => <>{record.valor}</>,
+    },
+    {
+      key: "5",
       title: "Ações",
-      render: (record: ICliente) => {
+      render: (record: IQuarto) => {
         return (
           <>
             <div className="flex gap-2">
@@ -50,7 +61,7 @@ export default function TabelaCliente({ dados }: TableProps) {
               </Button>
               <Popconfirm
                 title="Você tem certeza que deseja apagar esse registro?"
-                onConfirm={() => deletar(record)}
+                // onConfirm={() => deletar(record)}
               >
                 <Button
                   type="primary"
@@ -66,23 +77,8 @@ export default function TabelaCliente({ dados }: TableProps) {
     },
   ];
 
-  const deletar = async (record: ICliente) => {
-    // setLoading(true);
-    // try {
-    //   await rgService.delete(`${record.id}`).then(() => {
-    //     const novosDados = dados.filter((i: IRg) => i.id !== record.id);
-    //     setDataSource(novosDados);
-    //     message.success("Registro apagado com sucesso!");
-    //   });
-    // } catch (error) {
-    //   message.error("Erro ao apagar 027167registro!");
-    // } finally {
-    //   setLoading(false);
-    //   fetchDadosPessoais();
-    // }
-  };
-  const editar = (record: ICliente) => {
-    setEditarCliente({ ...record });
+  const editar = (record: IQuarto) => {
+    setEditarQuarto({ ...record });
     mudaModalEditar();
   };
   // const resetEditing = () => {
@@ -106,8 +102,8 @@ export default function TabelaCliente({ dados }: TableProps) {
         scroll={{ x: 200 }}
         //   emptyTexto="Nenhum rg encontrado"
       />
-      <EditarCliente
-        dados={editarCliente}
+      <EditarQuarto
+        dados={editarQuarto}
         isOpen={modalEditar}
         setIsOpen={mudaModalEditar}
       />

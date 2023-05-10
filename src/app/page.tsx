@@ -1,12 +1,13 @@
 "use client";
 import { useState } from "react";
-import Cliente from "./pages/modules/cliente/visualiza/page";
+import Cliente from "./pages/modules/visualiza/cliente/page";
+import { Quarto } from "./pages/modules/visualiza/quarto/page";
 
 export default function Home() {
   const [selected, setSelected] = useState("");
   let renderTab: any = {
     clientes: <Cliente />,
-    quartos: <div>Quartos</div>,
+    quartos: <Quarto />,
     produtos: <div>Produtos</div>,
     relatorios: <div>Relatorios</div>,
     rendimentos: <div>Rendimentos</div>,
