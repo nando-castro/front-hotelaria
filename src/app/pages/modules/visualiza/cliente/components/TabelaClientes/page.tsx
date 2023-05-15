@@ -37,7 +37,7 @@ export default function TabelaCliente({ dados }: TableProps) {
         return (
           <>
             <div className="flex gap-2">
-              <a href="/hotel/modules/cliente/visualiza/VerCliente">
+              <a href="/hotel/pages/modules/visualiza/cliente/modules/VerCliente">
                 <Button
                   type="primary"
                   className=" bg-blue-950 rounded-full flex items-center justify-center p-2 text-white font-bold"
