@@ -99,16 +99,20 @@ const EditarProduto = ({ isOpen, setIsOpen, dados }: ModalProps) => {
             </Col>
 
             <Col xs={24} sm={12} md={12}>
-              <label>Vagas</label>
-              <FormItem name="vagas" colon={false} hasFeedback>
-                <Input placeholder="Vagas" />
-              </FormItem>
-            </Col>
+                <label>Marca</label>
+                <FormItem
+                  name="marca"
+                  colon={false}
+                  /*rules={required}*/ hasFeedback
+                >
+                  <Input placeholder="Marca" />
+                </FormItem>
+              </Col>
 
             <Col xs={24} sm={12} md={12}>
-              <label>Disponível</label>
-              <FormItem name="disponivel" colon={false} hasFeedback>
-                <Input placeholder="Disponivel" />
+              <label>Estoque</label>
+              <FormItem name="estoque" colon={false} hasFeedback>
+                <Input placeholder="Estoque" />
               </FormItem>
             </Col>
 

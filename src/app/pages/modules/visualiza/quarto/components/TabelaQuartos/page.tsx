@@ -24,18 +24,28 @@ export function TabelaQuartos({ dados }: TableProps) {
     },
     {
       key: "2",
-      title: "vagas",
+      title: "Vagas",
       render: (record: IQuarto) => <>{record.vagas}</>,
     },
     {
       key: "3",
-      title: "disponivel",
-      render: (record: IQuarto) => <>{record.disponivel === true ? "Sim" : "Não"}</>,
+      title: "Disponivel",
+      render: (record: IQuarto) => (
+        <>
+          {record.disponivel === true ? (
+            <p style={{ color: "green", fontWeight: "bold" }}>Sim</p>
+          ) : (
+            <p style={{ color: "red", fontWeight: "bold" }}>Não</p>
+          )}
+        </>
+      ),
     },
     {
       key: "4",
-      title: "valor",
-      render: (record: IQuarto) => <>{record.valor}</>,
+      title: "Valor",
+      render: (record: IQuarto) => (
+        <p style={{ fontWeight: "bold" }}>R$ {record.valor}</p>
+      ),
     },
     {
       key: "5",
@@ -76,6 +86,10 @@ export function TabelaQuartos({ dados }: TableProps) {
       },
     },
   ];
+
+  const deletar = async (record: IQuarto) => {
+    setDataSource(dataSource.filter((item) => item.id !== record.id));
+  };
 
   const editar = (record: IQuarto) => {
     setEditarQuarto({ ...record });

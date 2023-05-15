@@ -15,7 +15,7 @@ const dados = [
   {
     id: 2,
     descricao: "string",
-    disponivel: false,
+    disponivel: true,
     foto: "string",
     vagas: 2,
     valor: 10,
@@ -28,7 +28,7 @@ export function Quarto() {
   return (
     <div>
       <div className="bg-green-600 w-48 p-4 m-4 flex items-center justify-center rounded font-bold text-white cursor-pointer hover:bg-green-400 hover:text-black">
-        Cadastrar quarto
+        Cadastrar Quarto
       </div>
       <div>
         <TabelaQuartos dados={dados} />

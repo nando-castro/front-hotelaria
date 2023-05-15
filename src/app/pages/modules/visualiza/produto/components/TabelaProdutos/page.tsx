@@ -3,6 +3,7 @@ import { Button, Popconfirm } from "antd";
 import Table, { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
 import { IProduto } from "../../@types/IProduto";
+import EditarProduto from "../ModalEditarProduto/page";
 
 interface TableProps {
   dados: IProduto[];
@@ -21,13 +22,13 @@ export default function Tabelaproduto({ dados }: TableProps) {
     },
     {
       key: "2",
-      title: "Valor",
-      render: (record: IProduto) => <>{record.valor}</>,
+      title: "Marca",
+      render: (record: IProduto) => <>{record.marca}</>,
     },
     {
       key: "3",
-      title: "Marca",
-      render: (record: IProduto) => <>{record.marca}</>,
+      title: "Valor",
+      render: (record: IProduto) => <>{record.valor}</>,
     },
     {
       key: "4",
@@ -75,6 +76,7 @@ export default function Tabelaproduto({ dados }: TableProps) {
   ];
 
   const deletar = async (record: IProduto) => {
+    setDataSource(dataSource.filter((i: IProduto) => i.id !== record.id));
     // setLoading(true);
     // try {
     //   await rgService.delete(`${record.id}`).then(() => {
@@ -114,11 +116,11 @@ export default function Tabelaproduto({ dados }: TableProps) {
         scroll={{ x: 200 }}
         //   emptyTexto="Nenhum rg encontrado"
       />
-      {/* <EditarProduto
-        dados={editarproduto}
+      <EditarProduto
+        dados={editarProduto}
         isOpen={modalEditar}
         setIsOpen={mudaModalEditar}
-      /> */}
+      />
     </div>
   );
 }

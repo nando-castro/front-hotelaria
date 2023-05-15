@@ -66,6 +66,8 @@ export default function TabelaCliente({ dados }: TableProps) {
   ];
 
   const deletar = async (record: ICliente) => {
+    setDataSource(dataSource.filter((i: ICliente) => i.id !== record.id));
+
     // setLoading(true);
     // try {
     //   await rgService.delete(`${record.id}`).then(() => {
