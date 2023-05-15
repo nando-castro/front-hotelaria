@@ -2,17 +2,16 @@ import { Col, DatePicker, Form, Input, Modal, Row } from "antd";
 import FormItem from "antd/es/form/FormItem";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { ICliente } from "../../@types/ICliente";
 
 interface ModalProps {
   isOpen: boolean;
   setIsOpen: () => void;
-  dados: ICliente | undefined;
+  // dados: ICliente | undefined;
 }
 
 // const { Option } = Select;
 
-const EditarCliente = ({ isOpen, setIsOpen, dados }: ModalProps) => {
+const CadastrarProduto = ({ isOpen, setIsOpen }: ModalProps) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState<boolean>(false);
   //   const { addRg } = useDadosPessoais();
@@ -52,26 +51,12 @@ const EditarCliente = ({ isOpen, setIsOpen, dados }: ModalProps) => {
 
   useEffect(() => {
     form.resetFields();
-    form.setFieldsValue({
-      nome: dados?.nome,
-      cpf: dados?.cpf.replace(" ", "").replace(/[^\d]+/g, ""),
-      telefone: dados?.telefone,
-      email: dados?.email,
-      dataCadastro: dayjs(dados?.dataCadastro, "YYYY-MM-DD"),
-    });
-  }, [
-    dados?.cpf,
-    dados?.dataCadastro,
-    dados?.email,
-    dados?.nome,
-    dados?.telefone,
-    form,
-  ]);
+  }, [form]);
 
   return (
     <div>
       <Modal
-        title="Editar Cliente"
+        title="Cadastrar Quarto"
         open={isOpen}
         onCancel={() => setIsOpen()}
         footer={[]}
@@ -84,9 +69,9 @@ const EditarCliente = ({ isOpen, setIsOpen, dados }: ModalProps) => {
         >
           <Row gutter={8}>
             <Col xs={24} sm={24} md={24}>
-              <label>Nome</label>
+              <label>Descrição</label>
               <FormItem
-                name="nome"
+                name="descricao"
                 colon={false}
                 /*rules={required}*/ hasFeedback
               >
@@ -95,27 +80,31 @@ const EditarCliente = ({ isOpen, setIsOpen, dados }: ModalProps) => {
             </Col>
 
             <Col xs={24} sm={12} md={12}>
-              <label>CPF</label>
-              <FormItem name="cpf" colon={false} hasFeedback>
-                <Input placeholder="CPF" />
+                <label>Marca</label>
+                <FormItem
+                  name="marca"
+                  colon={false}
+                  /*rules={required}*/ hasFeedback
+                >
+                  <Input placeholder="Marca" />
+                </FormItem>
+              </Col>
+
+            <Col xs={24} sm={12} md={12}>
+              <label>Estoque</label>
+              <FormItem name="estoque" colon={false} hasFeedback>
+                <Input placeholder="Estoque" />
               </FormItem>
             </Col>
 
             <Col xs={24} sm={12} md={12}>
-              <label>Telefone</label>
-              <FormItem name="telefone" colon={false} hasFeedback>
-                <Input placeholder="telefone" />
+              <label>Valor</label>
+              <FormItem name="valor" colon={false} hasFeedback>
+                <Input placeholder="valor" />
               </FormItem>
             </Col>
 
-            <Col xs={24} sm={24} md={24}>
-              <label>Email</label>
-              <FormItem name="email" colon={false} hasFeedback>
-                <Input placeholder="Email" />
-              </FormItem>
-            </Col>
-
-            <Col xs={16} sm={10} md={10}>
+            <Col xs={16} sm={12} md={12}>
               <label>Data de Cadastro</label>
               <FormItem name="dataCadastro">
                 <DatePicker
@@ -133,4 +122,4 @@ const EditarCliente = ({ isOpen, setIsOpen, dados }: ModalProps) => {
     </div>
   );
 };
-export default EditarCliente;
+export default CadastrarProduto;

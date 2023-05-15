@@ -34,9 +34,6 @@ export default function Cliente() {
 
   return (
     <div>
-      <div className="bg-green-600 w-48 p-4 m-4 flex items-center justify-center rounded font-bold text-white cursor-pointer hover:bg-green-400 hover:text-black">
-        Cadastrar Cliente
-      </div>
       <div>
         <TabelaCliente dados={dados} />
       </div>

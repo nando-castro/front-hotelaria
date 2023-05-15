@@ -7,12 +7,12 @@ import { ICliente } from "../../@types/ICliente";
 interface ModalProps {
   isOpen: boolean;
   setIsOpen: () => void;
-  dados: ICliente | undefined;
+  // dados: ICliente | undefined;
 }
 
 // const { Option } = Select;
 
-const EditarCliente = ({ isOpen, setIsOpen, dados }: ModalProps) => {
+const CadastrarCliente = ({ isOpen, setIsOpen }: ModalProps) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState<boolean>(false);
   //   const { addRg } = useDadosPessoais();
@@ -52,26 +52,12 @@ const EditarCliente = ({ isOpen, setIsOpen, dados }: ModalProps) => {
 
   useEffect(() => {
     form.resetFields();
-    form.setFieldsValue({
-      nome: dados?.nome,
-      cpf: dados?.cpf.replace(" ", "").replace(/[^\d]+/g, ""),
-      telefone: dados?.telefone,
-      email: dados?.email,
-      dataCadastro: dayjs(dados?.dataCadastro, "YYYY-MM-DD"),
-    });
-  }, [
-    dados?.cpf,
-    dados?.dataCadastro,
-    dados?.email,
-    dados?.nome,
-    dados?.telefone,
-    form,
-  ]);
+  }, [form]);
 
   return (
     <div>
       <Modal
-        title="Editar Cliente"
+        title="Cadastrar Cliente"
         open={isOpen}
         onCancel={() => setIsOpen()}
         footer={[]}
@@ -133,4 +119,4 @@ const EditarCliente = ({ isOpen, setIsOpen, dados }: ModalProps) => {
     </div>
   );
 };
-export default EditarCliente;
+export default CadastrarCliente;

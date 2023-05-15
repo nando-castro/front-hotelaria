@@ -3,6 +3,7 @@ import { Button, Popconfirm } from "antd";
 import Table, { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
 import { IProduto } from "../../@types/IProduto";
+import CadastrarProduto from "../ModalCadastrarProduto/page";
 import EditarProduto from "../ModalEditarProduto/page";
 
 interface TableProps {
@@ -12,8 +13,10 @@ interface TableProps {
 export default function Tabelaproduto({ dados }: TableProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [editarProduto, setEditarProduto] = useState<IProduto>();
+  const [cadastrarProduto, setCadastrarProduto] = useState<IProduto>({} as IProduto);
   const [dataSource, setDataSource] = useState<IProduto[]>(dados);
   const [modalEditar, setModalEditar] = useState<boolean>(false);
+  const [modalCadastrar, setModalCadastrar] = useState<boolean>(false);
   const columnsRegistro: ColumnsType<IProduto> = [
     {
       key: "1",
@@ -104,12 +107,19 @@ export default function Tabelaproduto({ dados }: TableProps) {
     setModalEditar(!modalEditar);
   }
 
+  function mudaModalCadastrar(): void {
+    setModalCadastrar(!modalCadastrar);
+  }
+
   useEffect(() => {
     setDataSource(dados);
   }, [dados]);
 
   return (
     <div>
+      <div onClick={() => mudaModalCadastrar()} className="bg-green-600 w-48 p-4 m-4 flex items-center justify-center rounded font-bold text-white cursor-pointer hover:bg-green-400 hover:text-black">
+        Cadastrar Produto
+      </div>
       <Table
         columns={columnsRegistro}
         dataSource={dataSource}
@@ -120,6 +130,10 @@ export default function Tabelaproduto({ dados }: TableProps) {
         dados={editarProduto}
         isOpen={modalEditar}
         setIsOpen={mudaModalEditar}
+      />
+      <CadastrarProduto
+        isOpen={modalCadastrar}
+        setIsOpen={mudaModalCadastrar}
       />
     </div>
   );

@@ -4,6 +4,7 @@ import { ColumnsType } from "antd/es/table";
 import React, { useEffect, useState } from "react";
 import EditarCliente from "../../../cliente/components/ModalEditarCliente/page";
 import { IQuarto } from "../../@types/IQuarto";
+import CadastrarQuarto from "../ModalCadstrarQuarto/page";
 import EditarQuarto from "../ModalEditarQuarto/page";
 
 interface TableProps {
@@ -13,8 +14,12 @@ interface TableProps {
 export function TabelaQuartos({ dados }: TableProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [editarQuarto, setEditarQuarto] = useState<IQuarto>();
+  const [cadastrarQuarto, setCadastrarQuarto] = useState<IQuarto>(
+    {} as IQuarto
+  );
   const [dataSource, setDataSource] = useState<IQuarto[]>(dados);
   const [modalEditar, setModalEditar] = useState<boolean>(false);
+  const [modalCadastrar, setModalCadastrar] = useState<boolean>(false);
 
   const columnsRegistro: ColumnsType<IQuarto> = [
     {
@@ -104,12 +109,19 @@ export function TabelaQuartos({ dados }: TableProps) {
     setModalEditar(!modalEditar);
   }
 
+  function mudaModalCadastrar(): void {
+    setModalCadastrar(!modalCadastrar);
+  }
+
   useEffect(() => {
     setDataSource(dados);
   }, [dados]);
 
   return (
     <div>
+      <div onClick={() => mudaModalCadastrar()} className="bg-green-600 w-48 p-4 m-4 flex items-center justify-center rounded font-bold text-white cursor-pointer hover:bg-green-400 hover:text-black">
+        Cadastrar Quarto
+      </div>
       <Table
         columns={columnsRegistro}
         dataSource={dataSource}
@@ -121,6 +133,7 @@ export function TabelaQuartos({ dados }: TableProps) {
         isOpen={modalEditar}
         setIsOpen={mudaModalEditar}
       />
+      <CadastrarQuarto isOpen={modalCadastrar} setIsOpen={mudaModalCadastrar} />
     </div>
   );
 }

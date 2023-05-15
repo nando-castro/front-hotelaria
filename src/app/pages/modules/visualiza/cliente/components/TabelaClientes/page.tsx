@@ -3,6 +3,7 @@ import { Button, Popconfirm } from "antd";
 import Table, { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
 import { ICliente } from "../../@types/ICliente";
+import CadastrarCliente from "../ModalCadastrarCliente/page";
 import EditarCliente from "../ModalEditarCliente/page";
 
 interface TableProps {
@@ -12,8 +13,12 @@ interface TableProps {
 export default function TabelaCliente({ dados }: TableProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [editarCliente, setEditarCliente] = useState<ICliente>();
+  const [cadastrarCliente, setCadastrarCliente] = useState<ICliente>(
+    {} as ICliente
+  );
   const [dataSource, setDataSource] = useState<ICliente[]>(dados);
   const [modalEditar, setModalEditar] = useState<boolean>(false);
+  const [modalCadastrar, setModalCadastrar] = useState<boolean>(false);
   const columnsRegistro: ColumnsType<ICliente> = [
     {
       key: "1",
@@ -91,8 +96,16 @@ export default function TabelaCliente({ dados }: TableProps) {
   //   setEditarCliente(undefined);
   // };
 
+  const cadastrar = (record: ICliente) => {
+    mudaModalEditar();
+  };
+
   function mudaModalEditar(): void {
     setModalEditar(!modalEditar);
+  }
+
+  function mudaModalCadastrar(): void {
+    setModalCadastrar(!modalCadastrar);
   }
 
   useEffect(() => {
@@ -101,6 +114,12 @@ export default function TabelaCliente({ dados }: TableProps) {
 
   return (
     <div>
+      <div
+        onClick={() => mudaModalCadastrar()}
+        className="bg-green-600 w-48 p-4 m-4 flex items-center justify-center rounded font-bold text-white cursor-pointer hover:bg-green-400 hover:text-black"
+      >
+        Cadastrar Cliente
+      </div>
       <Table
         columns={columnsRegistro}
         dataSource={dataSource}
@@ -111,6 +130,10 @@ export default function TabelaCliente({ dados }: TableProps) {
         dados={editarCliente}
         isOpen={modalEditar}
         setIsOpen={mudaModalEditar}
+      />
+      <CadastrarCliente
+        isOpen={modalCadastrar}
+        setIsOpen={mudaModalCadastrar}
       />
     </div>
   );
