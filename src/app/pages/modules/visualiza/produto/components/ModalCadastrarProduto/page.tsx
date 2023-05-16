@@ -56,7 +56,7 @@ const CadastrarProduto = ({ isOpen, setIsOpen }: ModalProps) => {
   return (
     <div>
       <Modal
-        title="Cadastrar Quarto"
+        title="Cadastrar Produto"
         open={isOpen}
         onCancel={() => setIsOpen()}
         footer={[]}

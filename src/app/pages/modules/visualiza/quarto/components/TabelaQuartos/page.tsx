@@ -2,9 +2,8 @@ import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, Popconfirm, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import React, { useEffect, useState } from "react";
-import EditarCliente from "../../../cliente/components/ModalEditarCliente/page";
 import { IQuarto } from "../../@types/IQuarto";
-import CadastrarQuarto from "../ModalCadstrarQuarto/page";
+import CadastrarQuarto from "../ModalCadastrarQuarto/page";
 import EditarQuarto from "../ModalEditarQuarto/page";
 
 interface TableProps {
