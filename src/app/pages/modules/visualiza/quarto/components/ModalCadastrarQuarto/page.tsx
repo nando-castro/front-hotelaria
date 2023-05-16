@@ -1,8 +1,7 @@
 import { Col, DatePicker, Form, Input, Modal, Row } from "antd";
 import FormItem from "antd/es/form/FormItem";
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
-import { IQuarto } from "../../@types/IQuarto";
+import { useState } from "react";
 
 interface ModalProps {
   isOpen: boolean;
