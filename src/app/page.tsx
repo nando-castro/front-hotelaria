@@ -50,7 +50,7 @@ export default function Home() {
           </div>
         </div>
         <div className="w-full h-full bg-white rounded-r-lg">
-          {currentTab !== "" ? renderTab[currentTab] : <div>Home</div>}
+          {currentTab !== "" ? renderTab[currentTab] : <div className="w-full h-full flex items-center justify-center font-bold text-9xl">Home</div>}
         </div>
       </div>
     </main>

@@ -38,9 +38,9 @@ export function TabelaQuartos({ dados }: TableProps) {
       render: (record: IQuarto) => (
         <>
           {record.disponivel === true ? (
-            <p style={{ color: "green", fontWeight: "bold" }}>Sim</p>
+            <p className="text-green-600 font-bold">Sim</p>
           ) : (
-            <p style={{ color: "red", fontWeight: "bold" }}>Não</p>
+            <p className="text-red-500 font-bold">Não</p>
           )}
         </>
       ),
@@ -49,7 +49,7 @@ export function TabelaQuartos({ dados }: TableProps) {
       key: "4",
       title: "Valor",
       render: (record: IQuarto) => (
-        <p style={{ fontWeight: "bold" }}>R$ {record.valor}</p>
+        <p className="font-bold">R$ {record.valor}</p>
       ),
     },
     {
